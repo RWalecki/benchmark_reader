@@ -11,9 +11,11 @@ files = np.array(sorted(list(glob.glob('./data/*.bmp'))))
 r = np.arange(len(files))
 np.random.shuffle(r)
 
-bps = 200
-bs = 32
-print('ideal:', 1/(bps*bs)*1000, 's for reading 1000 images')
+bs = 25 
+steps = 400
+duration = 150 # that is the time for one epoch of a resnet with a 1080p
+time_for_1000_iterations = duration/(bs*steps)*1000
+print('ideal:', time_for_1000_iterations*0.3, 's for reading 1000 images')
 
 if os.path.exists('tmp'):shutil.rmtree('tmp')
 os.mkdir('tmp')
